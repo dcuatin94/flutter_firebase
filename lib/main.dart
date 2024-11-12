@@ -78,7 +78,7 @@ class _AuthPageState extends State<AuthPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Firebase Auth Example'),
+        title: Text('Firebase Autenticacion'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -87,33 +87,45 @@ class _AuthPageState extends State<AuthPage> {
           children: [
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
+              decoration:
+                  InputDecoration(icon: Icon(Icons.email), labelText: 'Email'),
             ),
             TextField(
               controller: _passwordController,
-              decoration: InputDecoration(labelText: 'Password'),
+              decoration: InputDecoration(
+                  icon: Icon(Icons.lock), labelText: 'Password'),
               obscureText: true,
             ),
             SizedBox(height: 20),
             _user == null
-                ? Column(
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
                         onPressed: _register,
-                        child: Text('Register'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                        ),
+                        child: Text(
+                          'Registrar',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
+                      SizedBox(width: 10),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.green,
                         ),
                         onPressed: _login,
-                        child: Text('Login'),
+                        child: Text('Login',
+                            style: TextStyle(color: Colors.white)),
                       ),
                     ],
                   )
                 : Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Logged in as: ${_user!.email}'),
+                      Text('Inicio de sesión: ${_user!.email}'),
                       ElevatedButton(
                         onPressed: _logout,
                         style: ElevatedButton.styleFrom(
